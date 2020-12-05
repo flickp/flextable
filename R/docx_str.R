@@ -23,7 +23,8 @@ docx_str <- function(x, align = "center", split = FALSE, doc = NULL, ...){
       layout = table_layout(type = "autofit"),
       align = align,
       width = table_width(width = x$properties$width, unit = "pct"),
-      colwidths = table_colwidths(double(0L)))
+      colwidths = table_colwidths(double(0L)),
+      caption=x$caption$value)
   } else {
     pt <- prop_table(
       layout = table_layout(type = "fixed"),
@@ -31,7 +32,8 @@ docx_str <- function(x, align = "center", split = FALSE, doc = NULL, ...){
       width = table_width(unit = "in",
                           width = sum(widths, na.rm = TRUE)
       ),
-      colwidths = table_colwidths(widths))
+      colwidths = table_colwidths(widths),
+      caption=x$caption$value)
   }
   properties_str <- to_wml(pt, add_ns= FALSE, base_document = doc)
 
